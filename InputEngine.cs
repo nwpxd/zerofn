@@ -169,7 +169,12 @@ public class InputEngine : IDisposable
         {
             if (isDown)
             {
-                // Consume the keystroke, inject one mouse click
+                // Send the edit key through so Fortnite enters edit mode
+                _selfInjecting = true;
+                Interception.Send(_context, device, ref stroke, 1);
+                _selfInjecting = false;
+
+                // Then inject a mouse click to confirm the edit
                 if (_mouseDevice != 0)
                 {
                     var clickDown = new Stroke();
@@ -194,7 +199,8 @@ public class InputEngine : IDisposable
             }
             else if (isUp)
             {
-                // Consume silently
+                // Send the key-up through so Fortnite sees the release
+                Interception.Send(_context, device, ref stroke, 1);
                 return;
             }
         }
