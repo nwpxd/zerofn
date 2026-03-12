@@ -1,0 +1,5 @@
+C:\Users\q.yann\OneDrive - Caldic Global\Documents\zerofn\bin\Release\net8.0-windows\publish\ZeroFN.exe
+C:\Users\q.yann\OneDrive - Caldic Global\Documents\zerofn\bin\Release\net8.0-windows\publish\ZeroFN.dll
+C:\Users\q.yann\OneDrive - Caldic Global\Documents\zerofn\bin\Release\net8.0-windows\publish\ZeroFN.deps.json
+C:\Users\q.yann\OneDrive - Caldic Global\Documents\zerofn\bin\Release\net8.0-windows\publish\ZeroFN.runtimeconfig.json
+C:\Users\q.yann\OneDrive - Caldic Global\Documents\zerofn\bin\Release\net8.0-windows\publish\ZeroFN.pdb

@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dotnet build:*)",
+      "Bash(where dotnet:*)",
+      "Bash(dotnet --list-sdks)",
+      "Bash(\"C:/Program Files/dotnet/dotnet.exe\" --list-sdks)",
+      "Bash(\"C:/Program Files/dotnet/dotnet.exe\" --list-runtimes)",
+      "Bash(\"C:/Program Files/dotnet/dotnet.exe\" --info)",
+      "Bash(winget install:*)",
+      "Bash(export PATH=\"/c/Program Files/dotnet:$PATH\")",
+      "Bash(dotnet publish:*)",
+      "Bash(dotnet restore:*)"
+    ]
+  }
+}
