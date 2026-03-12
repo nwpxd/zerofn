@@ -1,25 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\q.yann\\OneDrive - Caldic Global\\Documents\\zerofn\\ZeroFN.csproj": {}
+    "D:\\claude\\c\\zerofn\\ZeroFN.csproj": {}
   },
   "projects": {
-    "C:\\Users\\q.yann\\OneDrive - Caldic Global\\Documents\\zerofn\\ZeroFN.csproj": {
+    "D:\\claude\\c\\zerofn\\ZeroFN.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\q.yann\\OneDrive - Caldic Global\\Documents\\zerofn\\ZeroFN.csproj",
+        "projectUniqueName": "D:\\claude\\c\\zerofn\\ZeroFN.csproj",
         "projectName": "ZeroFN",
-        "projectPath": "C:\\Users\\q.yann\\OneDrive - Caldic Global\\Documents\\zerofn\\ZeroFN.csproj",
-        "packagesPath": "C:\\Users\\q.yann\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\q.yann\\OneDrive - Caldic Global\\Documents\\zerofn\\obj\\",
+        "projectPath": "D:\\claude\\c\\zerofn\\ZeroFN.csproj",
+        "packagesPath": "C:\\Users\\yeee7\\.nuget\\packages\\",
+        "outputPath": "D:\\claude\\c\\zerofn\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\q.yann\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\yeee7\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0-windows"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -37,7 +43,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "10.0.100"
       },
       "frameworks": {
         "net8.0-windows7.0": {
@@ -53,6 +60,24 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.24, 8.0.24]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[8.0.24, 8.0.24]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.24, 8.0.24]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[8.0.24, 8.0.24]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
@@ -61,7 +86,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.419/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.103/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

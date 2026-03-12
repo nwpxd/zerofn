@@ -12,3 +12,18 @@ C:\Users\q.yann\OneDrive - Caldic Global\Documents\zerofn\obj\Debug\net8.0-windo
 C:\Users\q.yann\OneDrive - Caldic Global\Documents\zerofn\obj\Debug\net8.0-windows\ZeroFN.pdb
 C:\Users\q.yann\OneDrive - Caldic Global\Documents\zerofn\obj\Debug\net8.0-windows\ZeroFN.genruntimeconfig.cache
 C:\Users\q.yann\OneDrive - Caldic Global\Documents\zerofn\obj\Debug\net8.0-windows\ref\ZeroFN.dll
+D:\claude\c\zerofn\bin\Debug\net8.0-windows\ZeroFN.exe
+D:\claude\c\zerofn\bin\Debug\net8.0-windows\ZeroFN.deps.json
+D:\claude\c\zerofn\bin\Debug\net8.0-windows\ZeroFN.runtimeconfig.json
+D:\claude\c\zerofn\bin\Debug\net8.0-windows\ZeroFN.dll
+D:\claude\c\zerofn\bin\Debug\net8.0-windows\ZeroFN.pdb
+D:\claude\c\zerofn\obj\Debug\net8.0-windows\ZeroFN.GeneratedMSBuildEditorConfig.editorconfig
+D:\claude\c\zerofn\obj\Debug\net8.0-windows\ZeroFN.AssemblyInfoInputs.cache
+D:\claude\c\zerofn\obj\Debug\net8.0-windows\ZeroFN.AssemblyInfo.cs
+D:\claude\c\zerofn\obj\Debug\net8.0-windows\ZeroFN.csproj.CoreCompileInputs.cache
+D:\claude\c\zerofn\obj\Debug\net8.0-windows\ZeroFN.sourcelink.json
+D:\claude\c\zerofn\obj\Debug\net8.0-windows\ZeroFN.dll
+D:\claude\c\zerofn\obj\Debug\net8.0-windows\refint\ZeroFN.dll
+D:\claude\c\zerofn\obj\Debug\net8.0-windows\ZeroFN.pdb
+D:\claude\c\zerofn\obj\Debug\net8.0-windows\ZeroFN.genruntimeconfig.cache
+D:\claude\c\zerofn\obj\Debug\net8.0-windows\ref\ZeroFN.dll

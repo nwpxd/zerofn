@@ -16,9 +16,9 @@ public class InputEngine : IDisposable
     private volatile bool _lootEnabled;
     private volatile bool _editEnabled;
     private volatile bool _lootHeld;
-    private volatile bool _selfInjecting;
 
-    private int _mouseDevice;
+    private volatile int _mouseDevice;
+    private int _keyboardDevice;
 
     public ushort LootScanCode
     {
@@ -61,20 +61,12 @@ public class InputEngine : IDisposable
                 "Failed to create Interception context. Please install the Interception driver and reboot.");
         }
 
-        // Set keyboard filter to capture all keyboard events
+        // Set filters for both keyboard and mouse so we can detect the real mouse device
         Interception.SetFilter(_context, Interception.IsKeyboard, (ushort)KeyFilter.All);
+        Interception.SetFilter(_context, Interception.IsMouse, (ushort)MouseFilter.All);
 
-        // Find first mouse device (devices 11-20 are mouse devices in Interception)
         _mouseDevice = 0;
-        for (int i = 11; i <= 20; i++)
-        {
-            if (Interception.IsMouse(i) != 0)
-            {
-                _mouseDevice = i;
-                break;
-            }
-        }
-
+        _keyboardDevice = 0;
         _stopping = false;
         _mainThread = new Thread(MainLoop) { IsBackground = true, Name = "InputEngine" };
         _mainThread.Start();
@@ -109,17 +101,23 @@ public class InputEngine : IDisposable
 
             if (Interception.IsKeyboard(device) != 0)
             {
-                // Skip strokes we injected ourselves
-                if (_selfInjecting)
-                {
-                    Interception.Send(_context, device, ref stroke, 1);
-                    continue;
-                }
+                // Track the keyboard device for sending
+                if (_keyboardDevice == 0)
+                    _keyboardDevice = device;
+
                 HandleKeyboardStroke(device, ref stroke);
+            }
+            else if (Interception.IsMouse(device) != 0)
+            {
+                // Track the real mouse device from actual input
+                if (_mouseDevice == 0)
+                    _mouseDevice = device;
+
+                // Passthrough all mouse input
+                Interception.Send(_context, device, ref stroke, 1);
             }
             else
             {
-                // Passthrough non-keyboard strokes
                 Interception.Send(_context, device, ref stroke, 1);
             }
         }
@@ -140,7 +138,7 @@ public class InputEngine : IDisposable
                 _lootHeld = true;
                 int capturedDevice = device;
                 ushort capturedCode = code;
-                ushort capturedState = (ushort)(state & ~(ushort)KeyState.Up); // Ensure down state base flags
+                ushort capturedState = (ushort)(state & ~(ushort)KeyState.Up);
 
                 _lootRepeatThread = new Thread(() => LootRepeatLoop(capturedDevice, capturedCode, capturedState))
                 {
@@ -169,32 +167,31 @@ public class InputEngine : IDisposable
         {
             if (isDown)
             {
-                // Consume the keystroke, inject one mouse click
-                if (_mouseDevice != 0)
+                // Send the edit key through so Fortnite enters edit mode
+                Interception.Send(_context, device, ref stroke, 1);
+
+                // Then inject a mouse click to confirm the edit
+                int mouse = _mouseDevice;
+                if (mouse != 0)
                 {
+                    Thread.Sleep(5); // Small delay so the game registers the edit key first
+
                     var clickDown = new Stroke();
                     clickDown.Mouse.State = (ushort)MouseState.LeftDown;
-                    clickDown.Mouse.Flags = 0;
-                    clickDown.Mouse.Rolling = 0;
-                    clickDown.Mouse.X = 0;
-                    clickDown.Mouse.Y = 0;
-                    clickDown.Mouse.Information = 0;
-                    Interception.Send(_context, _mouseDevice, ref clickDown, 1);
+                    Interception.Send(_context, mouse, ref clickDown, 1);
+
+                    Thread.Sleep(5);
 
                     var clickUp = new Stroke();
                     clickUp.Mouse.State = (ushort)MouseState.LeftUp;
-                    clickUp.Mouse.Flags = 0;
-                    clickUp.Mouse.Rolling = 0;
-                    clickUp.Mouse.X = 0;
-                    clickUp.Mouse.Y = 0;
-                    clickUp.Mouse.Information = 0;
-                    Interception.Send(_context, _mouseDevice, ref clickUp, 1);
+                    Interception.Send(_context, mouse, ref clickUp, 1);
                 }
                 return;
             }
             else if (isUp)
             {
-                // Consume silently
+                // Send the key-up through normally
+                Interception.Send(_context, device, ref stroke, 1);
                 return;
             }
         }
@@ -209,7 +206,7 @@ public class InputEngine : IDisposable
         {
             var downStroke = new Stroke();
             downStroke.Key.Code = code;
-            downStroke.Key.State = baseState; // Down
+            downStroke.Key.State = baseState;
             Interception.Send(_context, device, ref downStroke, 1);
 
             var upStroke = new Stroke();
@@ -217,7 +214,7 @@ public class InputEngine : IDisposable
             upStroke.Key.State = (ushort)(baseState | (ushort)KeyState.Up);
             Interception.Send(_context, device, ref upStroke, 1);
 
-            Thread.SpinWait(1);
+            Thread.Sleep(1); // ~1ms between repeats
         }
     }
 
