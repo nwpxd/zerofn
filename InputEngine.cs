@@ -168,11 +168,20 @@ public class InputEngine : IDisposable
             if (isDown)
             {
                 // Send the edit key through so Fortnite enters edit mode
+<<<<<<< HEAD
                 Interception.Send(_context, device, ref stroke, 1);
 
                 // Then inject a mouse click to confirm the edit
                 int mouse = _mouseDevice;
                 if (mouse != 0)
+=======
+                _selfInjecting = true;
+                Interception.Send(_context, device, ref stroke, 1);
+                _selfInjecting = false;
+
+                // Then inject a mouse click to confirm the edit
+                if (_mouseDevice != 0)
+>>>>>>> 0bbdc1db35eddac81d0f5f4a4ff896e7ae753388
                 {
                     Thread.Sleep(5); // Small delay so the game registers the edit key first
 
@@ -190,7 +199,11 @@ public class InputEngine : IDisposable
             }
             else if (isUp)
             {
+<<<<<<< HEAD
                 // Send the key-up through normally
+=======
+                // Send the key-up through so Fortnite sees the release
+>>>>>>> 0bbdc1db35eddac81d0f5f4a4ff896e7ae753388
                 Interception.Send(_context, device, ref stroke, 1);
                 return;
             }
