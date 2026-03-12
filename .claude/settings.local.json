@@ -10,7 +10,9 @@
       "Bash(winget install:*)",
       "Bash(export PATH=\"/c/Program Files/dotnet:$PATH\")",
       "Bash(dotnet publish:*)",
-      "Bash(dotnet restore:*)"
+      "Bash(dotnet restore:*)",
+      "Bash(ls -la *.cs)",
+      "Bash(wc:*)"
     ]
   }
 }

@@ -16,6 +16,7 @@ public class InputEngine : IDisposable
     private volatile bool _lootEnabled;
     private volatile bool _editEnabled;
     private volatile bool _lootHeld;
+    private volatile bool _selfInjecting;
 
     private int _mouseDevice;
 
@@ -108,6 +109,12 @@ public class InputEngine : IDisposable
 
             if (Interception.IsKeyboard(device) != 0)
             {
+                // Skip strokes we injected ourselves
+                if (_selfInjecting)
+                {
+                    Interception.Send(_context, device, ref stroke, 1);
+                    continue;
+                }
                 HandleKeyboardStroke(device, ref stroke);
             }
             else
